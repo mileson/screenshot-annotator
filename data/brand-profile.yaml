@@ -1,0 +1,15 @@
+version: 1
+readme_author_block_zh:
+  heading: ""
+  lines: []
+readme_author_block_en:
+  heading: ""
+  lines: []
+contact_author_entries: []
+skill_layer:
+  provenance_text_zh: ""
+artifact_layer:
+  default_mode: "disabled"
+  allowed_types: []
+license:
+  owner: "mileson"

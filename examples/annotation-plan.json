@@ -1,0 +1,37 @@
+{
+  "style": {
+    "color": "#E62323",
+    "text_color": "#FFFFFF",
+    "line_width": 7,
+    "radius": 14,
+    "badge_radius": 28,
+    "badge_font_size": 34,
+    "crop_padding": 90
+  },
+  "annotations": [
+    {
+      "id": "1",
+      "rect": [128, 306, 696, 374],
+      "badge": {
+        "text": "1",
+        "center": [104, 326]
+      }
+    },
+    {
+      "id": "2",
+      "rect": [824, 1616, 2164, 1744],
+      "badge": {
+        "text": "2",
+        "center": [792, 1638]
+      }
+    },
+    {
+      "id": "3",
+      "rect": [824, 1744, 2164, 1924],
+      "badge": {
+        "text": "3",
+        "center": [792, 1766]
+      }
+    }
+  ]
+}

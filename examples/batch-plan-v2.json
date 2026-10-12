@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.0",
+  "job_id": "synthetic-settings-guide",
+  "style": {
+    "preset": "action-orange-v2"
+  },
+  "privacy": {
+    "status": "not_required",
+    "required": false,
+    "source_handling": "read_only_copy",
+    "sensitive_data": "inherit",
+    "watermark": "preserve_unknown",
+    "authorized_watermark_removal": false,
+    "upstream_audit": null
+  },
+  "flow": {
+    "type": "mixed",
+    "sort": "declared_order",
+    "numbering_scope": "job",
+    "order": [
+      "privacy-mode",
+      "profile-edit",
+      "notification-choice",
+      "save-result"
+    ],
+    "edges": [
+      {
+        "from": "privacy-mode",
+        "callout_id": "choose-private-mode",
+        "to": "profile-edit",
+        "kind": "next"
+      },
+      {
+        "from": "profile-edit",
+        "callout_id": "click-save",
+        "to": "notification-choice",
+        "kind": "next"
+      },
+      {
+        "from": "notification-choice",
+        "callout_id": "open-system-notifications",
+        "to": "save-result",
+        "kind": "alternative"
+      },
+      {
+        "from": "notification-choice",
+        "callout_id": "open-in-app-notifications",
+        "to": "save-result",
+        "kind": "alternative"
+      }
+    ]
+  },
+  "overview": {
+    "mode": "grid",
+    "columns": 4,
+    "max_pixels": 60000000,
+    "max_page_height": 12000,
+    "min_label_font_px": 14
+  },
+  "qa": {
+    "coordinate_grids": {
+      "enabled": true,
+      "assets": [
+        "privacy-mode",
+        "notification-choice"
+      ],
+      "step": 100
+    }
+  },
+  "assets": [
+    {
+      "id": "privacy-mode",
+      "source": "raw/settings-privacy-mode.png",
+      "output_name": "settings-privacy-mode-annotated.png",
+      "title": "选择隐私模式",
+      "kind": "sequential_action",
+      "protected_regions": [
+        {
+          "id": "page-title",
+          "rect": [48, 28, 1392, 96],
+          "reason": "保护页面标题"
+        }
+      ],
+      "annotations": [
+        {
+          "id": "choose-private-mode",
+          "rect": [820, 250, 1320, 340],
+          "semantic_role": "single",
+          "callout": {
+            "text": "选择隐私模式",
+            "marker": "none",
+            "anchor": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "id": "profile-edit",
+      "source": "raw/settings-profile-edit.png",
+      "output_name": "settings-profile-edit-annotated.png",
+      "title": "保存资料设置",
+      "kind": "sequential_action",
+      "protected_regions": [
+        {
+          "id": "required-mark",
+          "rect": [390, 236, 418, 272],
+          "reason": "保护必填星号"
+        },
+        {
+          "id": "save-button-text",
+          "rect": [1155, 776, 1288, 816],
+          "reason": "保护按钮文字"
+        }
+      ],
+      "annotations": [
+        {
+          "id": "enter-display-name",
+          "rect": [420, 220, 1280, 324],
+          "semantic_role": "sequence",
+          "callout": {
+            "text": "填写显示名称",
+            "marker": "auto",
+            "anchor": "auto"
+          }
+        },
+        {
+          "id": "click-save",
+          "rect": [1120, 748, 1320, 836],
+          "semantic_role": "sequence",
+          "callout": {
+            "text": "点击保存",
+            "marker": "auto",
+            "anchor": "auto"
+          }
+        }
+      ]
+    },
+    {
+      "id": "notification-choice",
+      "source": "raw/settings-notification-choice.png",
+      "output_name": "settings-notification-choice-annotated.png",
+      "title": "选择通知入口",
+      "kind": "alternative",
+      "protected_regions": [
+        {
+          "id": "warning-text",
+          "rect": [420, 470, 1280, 530],
+          "reason": "保护红色提示"
+        }
+      ],
+      "annotations": [
+        {
+          "id": "open-system-notifications",
+          "rect": [420, 210, 1280, 306],
+          "semantic_role": "alternative",
+          "callout": {
+            "text": "点击系统通知",
+            "marker": "auto",
+            "anchor": "top_left"
+          }
+        },
+        {
+          "id": "open-in-app-notifications",
+          "rect": [420, 330, 1280, 426],
+          "semantic_role": "alternative",
+          "callout": {
+            "text": "点击应用内通知",
+            "marker": "auto",
+            "anchor": "bottom_left"
+          }
+        }
+      ]
+    },
+    {
+      "id": "save-result",
+      "source": "raw/settings-save-result.png",
+      "output_name": "settings-save-result-annotated.png",
+      "title": "核对保存结果",
+      "kind": "result",
+      "protected_regions": [
+        {
+          "id": "result-value",
+          "rect": [860, 250, 1280, 330],
+          "reason": "保护关键结果"
+        }
+      ],
+      "annotations": [
+        {
+          "id": "confirm-save-result",
+          "rect": [420, 220, 1320, 360],
+          "semantic_role": "single",
+          "callout": {
+            "text": "结果：设置已保存",
+            "marker": "none",
+            "anchor": "auto"
+          }
+        }
+      ]
+    }
+  ]
+}

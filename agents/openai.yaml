@@ -1,0 +1,4 @@
+interface:
+  display_name: "截图与教程素材标注"
+  short_description: "按真实流程对齐、标注并审查已脱敏的教程截图"
+  default_prompt: "使用 $screenshot-annotator 按章节和真实操作顺序制作教程标注图。"

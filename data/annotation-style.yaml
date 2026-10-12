@@ -1,0 +1,155 @@
+schema_version: "2.0"
+# 本文件供 Skill 规划与维护时读取；实际作业必须在 Manifest 中显式选择 preset，
+# 引擎会把解析后的完整 style 固化进产物。修改默认值时须同步运行样式漂移测试。
+default_preset: action-orange-v2
+
+presets:
+  action-orange-v2:
+    display_name: "动作橙 v2"
+    status: active
+    renderer: v2
+    configurable: true
+    reference_width: 1179
+    scale_with_image: true
+    scaling:
+      enabled: true
+      mode: proportional
+      parameters:
+        rect_line_width:
+          base: 8
+        rect_radius:
+          base: 26
+        callout_font_size:
+          base: 44
+          reference_min: 44
+          absolute_min: 24
+    rect:
+      color: "#F97316"
+      line_width: 8
+      line_style: solid
+      radius: 26
+    callout:
+      fill: "#FFFFFF"
+      text_color: "#F97316"
+      border_color: "#F97316"
+      border_width: 4
+      radius: 26
+      font_size: 44
+      min_font_size: 24
+      padding_x: 22
+      padding_y: 14
+      anchor_gap: 18
+      max_width: 720
+      max_manual_distance: 360
+    marker:
+      fill: "#F97316"
+      text_color: "#FFFFFF"
+      radius: 28
+      font_size: 34
+
+  action-red-v2:
+    display_name: "动作红 v2"
+    status: active_optional
+    renderer: v2
+    configurable: true
+    based_on: action-orange-v2
+    reference_width: 1179
+    scale_with_image: true
+    rect:
+      color: "#E62323"
+      line_width: 8
+      line_style: solid
+      radius: 26
+    callout:
+      fill: "#FFFFFF"
+      text_color: "#E62323"
+      border_color: "#E62323"
+      border_width: 4
+      radius: 26
+      font_size: 44
+      min_font_size: 24
+      padding_x: 22
+      padding_y: 14
+      anchor_gap: 18
+      max_width: 720
+      max_manual_distance: 360
+    marker:
+      fill: "#E62323"
+      text_color: "#FFFFFF"
+      radius: 28
+      font_size: 34
+
+  classic-red-v1:
+    display_name: "经典红 v1"
+    status: retained
+    renderer: v1
+    rect:
+      color: "#E62323"
+      line_width: 7
+      line_style: solid
+      radius: 14
+    marker:
+      fill: "#E62323"
+      text_color: "#FFFFFF"
+      radius: 28
+      font_size: 34
+    crop_padding: 90
+
+copy:
+  large_chinese_action_label: true
+  operation_verbs:
+    - "点击"
+    - "选择"
+    - "填写"
+    - "上传"
+    - "阅读"
+    - "核对"
+    - "查看并确认"
+  information_verbs:
+    - "阅读"
+    - "核对"
+    - "结果"
+  forbid_object_only_label: true
+  forbid_production_page_number: true
+
+numbering:
+  single: none
+  sequence: number
+  alternative: letter
+  alternative_labels:
+    - "A"
+    - "B"
+
+placement:
+  strategy: minimum_occlusion
+  preferred_anchor: bottom_right
+  candidate_anchors:
+    - bottom_right
+    - inside_top_right
+    - top_right
+    - bottom_left
+    - top_left
+    - inside_bottom_right
+    - inside_top_left
+  branch_candidates:
+    A:
+      - top_left
+      - inside_top_left
+    B:
+      - bottom_left
+      - inside_bottom_right
+  candidates_are_advisory: true
+
+coordinate_grid:
+  enabled_by_default: false
+  step: 100
+  role: guide
+  snap: false
+  reshape_target_rect: false
+
+protected_content:
+  - "页面标题"
+  - "必填星号"
+  - "按钮文字"
+  - "红色提示"
+  - "关键数值"

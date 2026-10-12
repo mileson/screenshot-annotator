@@ -1,0 +1,97 @@
+{
+  "schema_version": "2.0",
+  "job_id": "synthetic-settings-guide",
+  "version": "v001",
+  "review_index": 1,
+  "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "status": "awaiting_manual_review",
+  "deterministic_ready": true,
+  "manual_review_required": true,
+  "reviewer": null,
+  "reviewed_at": null,
+  "decision": "unchecked",
+  "notes": "unchecked",
+  "blockers": [],
+  "assets": [
+    {
+      "id": "privacy-mode",
+      "render_status": "rendered",
+      "decision": "unchecked",
+      "notes": "unchecked",
+      "annotations": [
+        {
+          "id": "choose-private-mode",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        }
+      ]
+    },
+    {
+      "id": "profile-edit",
+      "render_status": "rendered",
+      "decision": "unchecked",
+      "notes": "unchecked",
+      "annotations": [
+        {
+          "id": "enter-display-name",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        },
+        {
+          "id": "click-save",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        }
+      ]
+    },
+    {
+      "id": "notification-choice",
+      "render_status": "rendered",
+      "decision": "unchecked",
+      "notes": "unchecked",
+      "annotations": [
+        {
+          "id": "open-system-notifications",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        },
+        {
+          "id": "open-in-app-notifications",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        }
+      ]
+    },
+    {
+      "id": "save-result",
+      "render_status": "rendered",
+      "decision": "unchecked",
+      "notes": "unchecked",
+      "annotations": [
+        {
+          "id": "confirm-save-result",
+          "alignment": "unchecked",
+          "readability": "unchecked",
+          "non_obstruction": "unchecked",
+          "decision": "unchecked",
+          "notes": "unchecked"
+        }
+      ]
+    }
+  ]
+}
