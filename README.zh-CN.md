@@ -10,45 +10,30 @@
 
 这是仓库演示脚本生成的实际结果。页面和数据均为虚构演示，未使用用户截图，也不代表正在运行的产品。
 
-## 典型场景
+[详细能力清单](#readme-section-1) · [用自己的截图制作](#readme-section-2) · [让你的 AI Agent 使用它](#readme-section-3) · [先跑一个没有私人数据的案例](#readme-section-4) · [典型场景](#readme-section-5) · [仓库导航](#readme-section-7) · [常见问题](#readme-section-8)
 
-| 你正在做什么 | 可以得到什么 |
+<a id="readme-section-1"></a>
+
+## 详细能力清单
+
+| 能力 | 可以做什么与使用条件 |
 |---|---|
-| 教新同事使用一个功能 | 完整入口框和一句动作说明 |
-| 写多屏产品教程 | 明确顺序的单图、纵向阅读图和审查总览 |
-| 解释两种可选入口 | A/B 并列标记，避免误读成先后步骤 |
-| 检查一组教程素材 | 网格总览、局部裁切和自动报告 |
-| 修正一个框错位置的步骤 | 新版本和对应复核记录，保留原图及旧版本 |
+| 单图兼容 | v1 红色圆角框、圆形编号和局部 QA |
+| 批量版本管理 | 稳定素材 ID、明确顺序、语义文件名、源图副本和独立版本目录 |
+| 坐标网格 | 100px 网格帮助读坐标；不会自动理解入口或强制吸附 |
+| 动作标注 | v2 橙色或红色圆角框、大字号标签和清楚的连接关系 |
+| 顺序与并列 | 单点免编号，真实先后顺序使用数字，可选入口使用字母 |
+| 保护区域 | 避开已声明的标题、按钮文字、关键数值等；保护区需要由人或 Agent 提供 |
+| 场景目标契约 | 规定按钮、菜单、导航和结果行必须包含或排除哪些区域 |
+| 阅读版式 | 纵向长图、4–7 列总览，按像素与可读性预算分片 |
+| 自动 QA | 检查越界、碰撞、源图哈希、元数据、允许变化区域和文件一致性 |
+| 人工复核 | 按版本绑定复核模板和追加记录，返修不能沿用旧版签核 |
+| 隐私继承 | 必要时读取已验证的上游脱敏审计；不会自动识别并遮挡私人信息 |
+| 最小返修 | 保留旧版本，只调整失败素材并重新复核 |
 
-## 先跑一个没有私人数据的案例
+![输出结构示意图](docs/outputs.svg)
 
-如果已有能导入 Pillow 的 Python，可以直接运行演示。需要独立环境时：
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-python3 examples/run_demo.py
-```
-
-演示会生成 `demo-output/raw/settings.png`、标注计划，以及 `demo-output/output/synthetic-demo/versions/v001/`。打开里面的 `annotated/settings-annotated.png`、`overview/` 和 QA 局部图。再次运行会创建新版本，保留此前结果。
-
-```bash
-python3 scripts/validate_annotation_project.py \
-  --version-dir demo-output/output/synthetic-demo/versions/v001
-```
-
-自动报告中的 `awaiting_manual_review` 表示文件和几何检查完成，仍然等待看图复核。人工记录必须绑定当前版本且填写完整，独立校验才可能得到最终 `passed`。具体填写方式见[复核说明](references/qa-review-v2.md)。
-
-## 让你的 AI Agent 使用它
-
-把整个仓库放进 Agent 能读取的 Skill 目录，目录名保留为 `screenshot-annotator`。不同宿主的发现方式不同；请按所用工具的 Skill 设置配置路径。不要只复制 `SKILL.md`，它还需要同目录的脚本和参考文件。如果宿主无法自动发现，可以把 Skill 文件和仓库位置作为任务上下文交给 Agent。
-
-可以这样描述任务：
-
-> 使用 screenshot-annotator，把这些已确认无敏感信息的演示截图做成操作教程。保留原图，先确认真实顺序和动作标签，再用 v2 生成。把单图、局部裁切和总览展示给我检查，在我看过之前不要写成人工验收通过。
-
-当前 Skill 指令和 v2 动作文案检查以简体中文为主。英文 README 方便理解工具，任意英文标签目前不保证通过动作前缀检查。
+<a id="readme-section-2"></a>
 
 ## 用自己的截图制作
 
@@ -73,28 +58,73 @@ python3 scripts/annotate_screenshot.py \
 
 ![流程示意图](docs/workflow.svg)
 
-## 详细能力清单
+<a id="readme-section-3"></a>
 
-| 能力 | 可以做什么与使用条件 |
+## 让你的 AI Agent 使用它
+
+把整个仓库放进 Agent 能读取的 Skill 目录，目录名保留为 `screenshot-annotator`。不同宿主的发现方式不同；请按所用工具的 Skill 设置配置路径。不要只复制 `SKILL.md`，它还需要同目录的脚本和参考文件。如果宿主无法自动发现，可以把 Skill 文件和仓库位置作为任务上下文交给 Agent。
+
+可以这样描述任务：
+
+> 使用 screenshot-annotator，把这些已确认无敏感信息的演示截图做成操作教程。保留原图，先确认真实顺序和动作标签，再用 v2 生成。把单图、局部裁切和总览展示给我检查，在我看过之前不要写成人工验收通过。
+
+当前 Skill 指令和 v2 动作文案检查以简体中文为主。英文 README 方便理解工具，任意英文标签目前不保证通过动作前缀检查。
+
+<a id="readme-section-4"></a>
+
+## 先跑一个没有私人数据的案例
+
+如果已有能导入 Pillow 的 Python，可以直接运行演示。需要独立环境时：
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements.txt
+python3 examples/run_demo.py
+```
+
+演示会生成 `demo-output/raw/settings.png`、标注计划，以及 `demo-output/output/synthetic-demo/versions/v001/`。打开里面的 `annotated/settings-annotated.png`、`overview/` 和 QA 局部图。再次运行会创建新版本，保留此前结果。
+
+```bash
+python3 scripts/validate_annotation_project.py \
+  --version-dir demo-output/output/synthetic-demo/versions/v001
+```
+
+自动报告中的 `awaiting_manual_review` 表示文件和几何检查完成，仍然等待看图复核。人工记录必须绑定当前版本且填写完整，独立校验才可能得到最终 `passed`。具体填写方式见[复核说明](references/qa-review-v2.md)。
+
+<a id="readme-section-5"></a>
+
+## 典型场景
+
+| 你正在做什么 | 可以得到什么 |
 |---|---|
-| 单图兼容 | v1 红色圆角框、圆形编号和局部 QA |
-| 批量版本管理 | 稳定素材 ID、明确顺序、语义文件名、源图副本和独立版本目录 |
-| 坐标网格 | 100px 网格帮助读坐标；不会自动理解入口或强制吸附 |
-| 动作标注 | v2 橙色或红色圆角框、大字号标签和清楚的连接关系 |
-| 顺序与并列 | 单点免编号，真实先后顺序使用数字，可选入口使用字母 |
-| 保护区域 | 避开已声明的标题、按钮文字、关键数值等；保护区需要由人或 Agent 提供 |
-| 场景目标契约 | 规定按钮、菜单、导航和结果行必须包含或排除哪些区域 |
-| 阅读版式 | 纵向长图、4–7 列总览，按像素与可读性预算分片 |
-| 自动 QA | 检查越界、碰撞、源图哈希、元数据、允许变化区域和文件一致性 |
-| 人工复核 | 按版本绑定复核模板和追加记录，返修不能沿用旧版签核 |
-| 隐私继承 | 必要时读取已验证的上游脱敏审计；不会自动识别并遮挡私人信息 |
-| 最小返修 | 保留旧版本，只调整失败素材并重新复核 |
+| 教新同事使用一个功能 | 完整入口框和一句动作说明 |
+| 写多屏产品教程 | 明确顺序的单图、纵向阅读图和审查总览 |
+| 解释两种可选入口 | A/B 并列标记，避免误读成先后步骤 |
+| 检查一组教程素材 | 网格总览、局部裁切和自动报告 |
+| 修正一个框错位置的步骤 | 新版本和对应复核记录，保留原图及旧版本 |
 
-![输出结构示意图](docs/outputs.svg)
+<a id="readme-section-6"></a>
 
 ## 文件在哪里
 
 `SKILL.md` 是 Agent 操作说明，`scripts/` 提供渲染和校验，`references/` 解释契约，`examples/` 有计划和可运行演示，`tests/` 是合成回归测试。`data/annotation-style.yaml` 保存可配置样式；公开版品牌宣传项和私人执行记忆均为空。
+
+<a id="readme-section-7"></a>
+
+## 仓库导航
+
+| 入口 | 内容 |
+| --- | --- |
+| [`SKILL.md`](SKILL.md) | Agent 使用规则与执行入口 |
+| [`docs/`](docs/) | 项目说明与参考文档 |
+| [`examples/`](examples/) | 可参考的输入与调用示例 |
+| [`references/`](references/) | 技能规则与输入输出合同 |
+| [`scripts/`](scripts/) | 开发与维护脚本 |
+| [`templates/`](templates/) | 可复用模板 |
+| [`tests/`](tests/) | 自动化测试 |
+
+<a id="readme-section-8"></a>
 
 ## 常见问题
 
@@ -116,9 +146,13 @@ python3 scripts/annotate_screenshot.py \
 
 **命令成功就能交付吗？** 还需要打开完整单图、局部图和最终总览。自动检查无法证明圈选区域真的教会了正确操作。
 
+<a id="readme-section-9"></a>
+
 ## 验证与限制
 
 测试命令为 `python3 -m unittest discover -s tests -t .`，[验证记录](docs/validation.md) 写明本次实际结果。运行依赖是 Python 和 Pillow，没有网络服务、登录账号或内置 API 凭证。仓库未提供自动 OCR 识别；真实截图和第三方素材的使用权由使用者确认。
+
+<a id="readme-section-10"></a>
 
 ## 许可证
 
